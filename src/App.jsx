@@ -1,4 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
+import Farm from './components/Farm'
+
 import './App.css'
 
 const initialState = {
@@ -8,27 +11,29 @@ const initialState = {
 }
 
 function App() {
-  const [farmState, setFarmState] = useState(initialState)
+  const [farmParams, setFarmParams] = useState(initialState)
 
-  const updateFarmState = (key, value) => {
-    const newFarmState = {
-      ...farmState,
+  const updateFarmParams = (key, value) => {
+    if (value < 1) value = 1
+    const newFarmParams = {
+      ...farmParams,
       [key]: value,
     }
-    setFarmState(newFarmState)
+    setFarmParams(newFarmParams)
   }
 
   return (
     <div className='App'>
       <h1>Rain Problem V2</h1>
-      <div>Farm Dimensions</div>
-      <div className='farmDimensions'>
+
+      <h2>Farm Dimensions</h2>
+      <div className='farmParameters'>
         <div className='farmDimBtn'>
-          <div>Rows - {farmState.farmRows}</div>
+          <div>Rows - {farmParams.farmRows}</div>
           <div
             className='btn'
             onClick={() => {
-              updateFarmState('farmRows', farmState.farmRows + 1)
+              updateFarmParams('farmRows', farmParams.farmRows + 1)
             }}
           >
             More
@@ -36,18 +41,18 @@ function App() {
           <div
             className='btn'
             onClick={() => {
-              updateFarmState('farmRows', farmState.farmRows - 1)
+              updateFarmParams('farmRows', farmParams.farmRows - 1)
             }}
           >
             Less
           </div>
         </div>
         <div className='farmDimBtn'>
-          <div>Columns - {farmState.farmCols}</div>
+          <div>Columns - {farmParams.farmCols}</div>
           <div
             className='btn'
             onClick={() => {
-              updateFarmState('farmCols', farmState.farmCols + 1)
+              updateFarmParams('farmCols', farmParams.farmCols + 1)
             }}
           >
             More
@@ -55,13 +60,38 @@ function App() {
           <div
             className='btn'
             onClick={() => {
-              updateFarmState('farmCols', farmState.farmCols - 1)
+              updateFarmParams('farmCols', farmParams.farmCols - 1)
             }}
           >
             Less
           </div>
         </div>
       </div>
+
+      <h2>Minimum Rainfall Per Plant</h2>
+      <div className='farmParameters'>
+        <div className='farmDimBtn'>
+          <div>Drops - {farmParams.minimumRainfall}</div>
+          <div
+            className='btn'
+            onClick={() => {
+              updateFarmParams('minimumRainfall', farmParams.minimumRainfall + 1)
+            }}
+          >
+            More
+          </div>
+          <div
+            className='btn'
+            onClick={() => {
+              updateFarmParams('minimumRainfall', farmParams.minimumRainfall - 1)
+            }}
+          >
+            Less
+          </div>
+        </div>
+      </div>
+
+      <Farm farmParams={farmParams} />
     </div>
   )
 }
