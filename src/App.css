@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.farmDimensions {
+  display: flex;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.farmDimBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.farmDimBtn .btn {
+  border: 1px solid black;
+  padding: 3px;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.farmDimBtn .btn:hover {
+  background-color: #ddd;
+}
